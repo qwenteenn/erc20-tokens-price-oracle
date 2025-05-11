@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "dev": "deno run --watch --allow-env --allow-net --env-file=.env src/index.ts",
+    "start": "deno run --allow-env --allow-net --env-file=.env src/index.ts"
+  },
+  "imports": {
+    "@consumer/": "../consumer/",
+    "@/": "./src/",
+    "viem": "npm:viem@^2.28.3"
+  }
+}
