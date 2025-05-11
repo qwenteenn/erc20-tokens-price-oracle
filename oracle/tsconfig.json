@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "types": ["mocha", "chai"],
+    "resolveJsonModule": true,
+    "outDir": "build"
+  },
+  "include": ["test/**/*.ts"]
+}
