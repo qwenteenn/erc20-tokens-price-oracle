@@ -1,0 +1,31 @@
+{
+  "name": "erc20-tokens-price-oracle",
+  "version": "1.0.0",
+  "description": "✨A trustfull price oracle for ERC20 tokens by symbol and currency ",
+  "keywords": [
+    "eth",
+    "web3",
+    "oracle",
+    "blockchain",
+    "ethereum"
+  ],
+  "private": true,
+  "scripts": {
+    "ganache": "ganache --deterministic",
+    "prepare": "husky",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "test:all": "pnpm -r test"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
