@@ -17,7 +17,7 @@ import {
     args: [DEFAULT_TOKEN_SYMBOL, DEFAULT_CURRENCY],
   });
 
-  console.log(`✅ Transacción enviada: ${hash}`);
+  console.log(`✅ Transaction sent: ${hash}`);
 
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
   console.log("📬 Confirmed in block:", receipt.blockNumber);
