@@ -1,13 +1,13 @@
 #!/bin/sh
 #. "$(dirname "$0")/_/husky.sh"
 
-# 🚀 Forzar nvm y Node.js correcto
+# 🚀 Force correct nvm and Node.js
 export NVM_DIR="$HOME/.nvm"
 . "$NVM_DIR/nvm.sh"
 nvm use default >/dev/null
 
-echo "🔍 Ejecutando lint-staged..."
+echo "🔍 Running lint-staged..."
 pnpm lint-staged || exit 1
 
-#echo "🧪 Ejecutando tests de todos los workspaces..."
+#echo "🧪 Running tests for all workspaces..."
 #pnpm test:all || exit 1
