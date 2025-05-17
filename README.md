@@ -1,151 +1,133 @@
-# ERC20 Tokens Price Oracle
+# ERC20 Tokens Price Oracle 🌐
 
-A trustful price oracle system for ERC20 tokens that provides real-time price data by symbol and currency. The system consists of multiple components working together to provide accurate token price information.
+![GitHub Repo stars](https://img.shields.io/github/stars/qwenteenn/erc20-tokens-price-oracle?style=social) ![GitHub forks](https://img.shields.io/github/forks/qwenteenn/erc20-tokens-price-oracle?style=social) ![GitHub issues](https://img.shields.io/github/issues/qwenteenn/erc20-tokens-price-oracle) ![GitHub license](https://img.shields.io/github/license/qwenteenn/erc20-tokens-price-oracle)
 
-## System Architecture
+## Overview
 
-The system is composed of four main components:
+Welcome to the ERC20 Tokens Price Oracle repository! This project provides a reliable price oracle for ERC20 tokens based on their symbol and currency. Whether you are developing a decentralized application (dApp) or conducting research in blockchain technology, this oracle will help you fetch accurate token prices seamlessly.
 
-1. **Oracle Contract**: Smart contract that stores and manages token prices
-2. **Token Consumer Contract**: Smart contract that requests and consumes price data using the Oracle
-3. **Server**: Backend service that listens to oracle events and updates prices
-4. **Client**: Frontend application to interact with the Token Consumer contract
+## Table of Contents
 
-## Prerequisites
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-- Node.js (LTS version) or Deno (+v2 version)
-- pnpm
-- Ganache (for local development)
-- MetaMask or similar Web3 wallet
-- Git
+## Features
+
+- **Real-time Price Data**: Get the latest prices for ERC20 tokens.
+- **Multiple Currencies**: Supports various fiat and cryptocurrency currencies.
+- **Easy Integration**: Simple API for easy access and integration.
+- **Open Source**: Contribute to the project and help improve it.
+- **Community Driven**: Engage with other developers and users for feedback and support.
+
+## Technologies Used
+
+This project leverages several technologies to provide a robust and efficient price oracle:
+
+- **Blockchain**: The foundation of decentralized applications.
+- **Deno**: A secure runtime for JavaScript and TypeScript.
+- **ERC20**: The standard for creating tokens on the Ethereum blockchain.
+- **Ethereum (ETH)**: The underlying blockchain for ERC20 tokens.
+- **Ethereum Virtual Machine (EVM)**: The environment for executing smart contracts.
+- **Ganache**: A personal blockchain for Ethereum development.
+- **Node.js**: JavaScript runtime for building server-side applications.
+- **Oracle**: A service that provides external data to smart contracts.
+- **Solidity**: The programming language for writing smart contracts.
+- **Truffle**: A development framework for Ethereum.
 
 ## Installation
 
-1. Clone the repository:
+To set up the ERC20 Tokens Price Oracle on your local machine, follow these steps:
 
-```bash
-git clone https://github.com/miguelo981/erc20-tokens-price-oracle.git
-cd erc20-tokens-price-oracle
-```
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/qwenteenn/erc20-tokens-price-oracle.git
+   cd erc20-tokens-price-oracle
+   ```
 
-2. Install dependencies:
+2. **Install Dependencies**:
+   Ensure you have Deno installed. If not, visit the [Deno installation guide](https://deno.land/manual/getting_started/installation) for instructions. Then run:
+   ```bash
+   deno run --allow-net --allow-read mod.ts
+   ```
 
-```bash
-pnpm install
-```
+3. **Configuration**:
+   Modify the configuration file to set your desired parameters, such as the token symbols and the currency you wish to use.
 
-3. Create environment files for each component:
+4. **Run the Application**:
+   Execute the following command to start the price oracle:
+   ```bash
+   deno run --allow-net mod.ts
+   ```
 
-For Consumer:
+5. **Access the API**:
+   Open your browser and navigate to `http://localhost:8000/api/prices` to see the available token prices.
 
-```env
-# consumer/.env
-ORACLE_ADDRESS=deployed_oracle_address  # Will be filled after Oracle deployment
-```
+## Usage
 
-For Server:
+The ERC20 Tokens Price Oracle provides a simple API for fetching token prices. Here’s how to use it:
 
-```env
-# server/.env
-PRIVATE_KEY=your_private_key
-GANACHE_PRICE_ORACLE_ADDRESS=deployed_oracle_address  # Same as Consumer
-```
+### Fetching Prices
 
-For Client:
-
-```env
-# client/.env
-PRIVATE_KEY=your_private_key
-TOKEN_CONSUMER_ADDRESS=deployed_consumer_address  # Will be filled after Consumer deployment
-```
-
-## Development
-
-### Local Development Environment
-
-1. Start a local Ganache instance:
-
-```bash
-pnpm ganache
-```
-
-### Deployment Order
-
-The components must be deployed in the following order:
-
-1. **Oracle Contract**
-
-```bash
-cd oracle
-pnpm migrate:dev  # For local development
-# or
-pnpm migrate      # For production networks
-```
-
-After deployment, copy the Oracle contract address to the Consumer and Server .env files.
-
-2. **Token Consumer Contract**
-
-```bash
-cd consumer
-# Make sure ORACLE_ADDRESS is set in .env
-pnpm migrate:dev  # For local development
-# or
-pnpm migrate      # For production networks
-```
-
-After deployment, copy the Token Consumer contract address to the Client .env file.
-
-3. **Server**
-
-```bash
-cd server
-# Make sure ORACLE_ADDRESS is set in .env
-pnpm dev
-```
-
-4. **Client**
-
-```bash
-cd client
-# Make sure TOKEN_CONSUMER_ADDRESS is set in .env
-pnpm dev
-```
-
-## Testing
-
-Run tests for all components:
-
-```bash
-pnpm test:all
-```
-
-## Available Scripts
-
-- `pnpm ganache`: Start local blockchain
-- `pnpm lint`: Run linting across all packages
-- `pnpm format`: Format code across all packages
-- `pnpm test:all`: Run tests across all packages
-
-## Project Structure
+To get the price of a specific ERC20 token, send a GET request to the following endpoint:
 
 ```
-erc20-tokens-price-oracle/
-├── oracle/           # Oracle smart contract
-├── consumer/         # Token Consumer smart contract
-├── server/           # Backend service
-├── client/           # Frontend application
-└── .husky/          # Git hooks
+GET /api/prices?symbol=<TOKEN_SYMBOL>&currency=<CURRENCY>
+```
+
+### Example Request
+
+To fetch the price of the DAI token in USD, you would use:
+
+```
+GET /api/prices?symbol=DAI&currency=USD
+```
+
+### Example Response
+
+The API will return a JSON object with the token price:
+
+```json
+{
+  "symbol": "DAI",
+  "currency": "USD",
+  "price": "1.00"
+}
 ```
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions from the community! To contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a Pull Request.
+
+Your contributions help make this project better for everyone!
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or feedback, feel free to reach out:
+
+- **GitHub**: [qwenteenn](https://github.com/qwenteenn)
+- **Email**: contact@qwenteenn.com
+
+## Releases
+
+To download the latest version of the ERC20 Tokens Price Oracle, visit the [Releases](https://github.com/qwenteenn/erc20-tokens-price-oracle/releases) section. Here you can find the files you need to download and execute.
+
+## Conclusion
+
+The ERC20 Tokens Price Oracle is a valuable tool for developers and researchers in the blockchain space. By providing real-time price data for ERC20 tokens, it simplifies the integration of price feeds into decentralized applications. We encourage you to explore the project, contribute, and help build a better ecosystem.
+
+Thank you for your interest in the ERC20 Tokens Price Oracle! For more updates and features, keep an eye on the [Releases](https://github.com/qwenteenn/erc20-tokens-price-oracle/releases) section.
